@@ -65,7 +65,7 @@
 
 <!-- ═══ CONTENT ═══ -->
 <!-- Prompt -->
-<text x="40" y="72" font-size="14" filter="url(#gs)">15<tspan fill="#4ADE80">❯</tspan>49<tspan fill="#86EFAC"> security-architect</tspan>49<tspan fill="#2d6a3f"> --compliance</tspan>49<tspan fill="#4ADE80"> nis2,dora,iso27001,pqc</tspan></text>
+<text x="40" y="72" font-size="14" filter="url(#gs)">16<tspan fill="#4ADE80">❯</tspan>39<tspan fill="#86EFAC"> security-architect</tspan>39<tspan fill="#2d6a3f"> --compliance</tspan>39<tspan fill="#4ADE80"> nis2,dora,iso27001,pqc</tspan></text>
 
 <!-- ═══ NAME ═══ -->
 <text x="40" y="140" fill="url(#ng)" font-size="62" font-weight="bold" filter="url(#gw)">Ruzibaev007</text>
@@ -75,7 +75,7 @@
 <!-- Role -->
 <text x="40" y="178" fill="#58a6ff" font-size="19" font-weight="600" filter="url(#gs)">&gt; Security Architect · DevSecOps · Cloud &amp; Quantum</text>
 <!-- Terminal -->
-<text x="40" y="206" fill="#6e7681" font-size="13">15<tspan fill="#4ADE80">$</tspan> terraform apply -auto-approve -var="compliance=nis2,dora,pqc"</text>
+<text x="40" y="206" fill="#6e7681" font-size="13">16<tspan fill="#4ADE80">$</tspan> terraform apply -auto-approve -var="compliance=nis2,dora,pqc"</text>
 
 <!-- ═══ RIGHT PANEL ═══ -->
 <rect x="640" y="50" width="240" height="185" rx="10" fill="#161b22" opacity="0.7"/>
@@ -98,7 +98,7 @@
 <!-- Clock -->
 <line x1="655" y1="202" x2="865" y2="202" stroke="#21262d" stroke-width="0.5"/>
 <text x="660" y="224" fill="#4ADE80" font-size="11" opacity="0.5">BERLIN</text>
-<text x="715" y="224" fill="#4ADE80" font-size="18" font-weight="700" filter="url(#gs)">15<tspan><animate attributeName="opacity" values="1;0.2;1" dur="1s" repeatCount="indefinite"/>:</tspan>49</text>
+<text x="715" y="224" fill="#4ADE80" font-size="18" font-weight="700" filter="url(#gs)">16<tspan><animate attributeName="opacity" values="1;0.2;1" dur="1s" repeatCount="indefinite"/>:</tspan>39</text>
 <text x="780" y="224" fill="#4ADE80" font-size="11" opacity="0.5">UTC+2</text>
 
 <!-- ═══ TAGS ═══ -->
