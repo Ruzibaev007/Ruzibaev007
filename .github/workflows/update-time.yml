@@ -2,10 +2,8 @@ name: "🕐 Update Berlin Time (Live Clock)"
 
 on:
   schedule:
-    # GitHub разрешает минимум 5 минут. 15 минут — идеальный баланс 
-    # между "живыми" часами и отсутствием банов за спам.
-    - cron: '*/15 * * * *'
-  workflow_dispatch: # Ручной запуск для тестирования
+    - cron: '*/15 * * * *' # Каждые 15 минут (безопасно для GitHub)
+  workflow_dispatch:
 
 jobs:
   update-time:
@@ -13,8 +11,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Update Berlin time in header.svg
         run: |
@@ -23,44 +20,35 @@ jobs:
           from datetime import datetime
           from zoneinfo import ZoneInfo
 
-          # Получаем текущее время в Берлине (автоматически учитывает DST)
-          berlin_tz = ZoneInfo("Europe/Berlin")
-          now = datetime.now(berlin_tz)
-          
-          # Формат: ЧЧ:ММ:СС (как вы просили, с секундами)
+          now = datetime.now(ZoneInfo("Europe/Berlin"))
           time_str = now.strftime("%H:%M:%S")
-          
-          # Путь к файлу
-          file_path = "assets/header.svg"
-          
-          with open(file_path, "r", encoding="utf-8") as f:
+          path = "assets/header.svg"
+
+          with open(path, "r", encoding="utf-8") as f:
               content = f.read()
-              
-          # Ищем текст внутри тега с id="berlin-clock" и заменяем его
-          # Пример: <text ... id="berlin-clock">14:58:00</text>
+
+          # Надёжная замена по id="berlin-clock"
           pattern = r'(<text[^>]*id="berlin-clock"[^>]*>).*?(</text>)'
           new_content = re.sub(pattern, rf'\g<1>{time_str}\g<2>', content)
-          
+
           if new_content != content:
-              with open(file_path, "w", encoding="utf-8") as f:
+              with open(path, "w", encoding="utf-8") as f:
                   f.write(new_content)
-              print(f"✅ Время обновлено на: {time_str} (Berlin)")
-              with open("time_changed.flag", "w") as f:
-                  f.write("true")
+              print(f"✅ Updated to: {time_str} (Berlin)")
+              with open("changed.flag", "w") as f: f.write("1")
           else:
-              print("⏸️ Время не изменилось, коммит не требуется.")
+              print("⏸️ Time unchanged")
           EOF
 
-      - name: Commit and push if changed
+      - name: Commit & Push
         run: |
-          if [ -f "time_changed.flag" ]; then
+          if [ -f changed.flag ]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add assets/header.svg
-            git commit -m "🕐 chore: update Berlin live clock to $(TZ='Europe/Berlin' date +'%H:%M:%S')"
+            git commit -m "🕐 chore: live Berlin clock $(TZ='Europe/Berlin' date +'%H:%M:%S')"
             git push
-            echo "✅ Changes pushed to GitHub"
-            rm time_changed.flag
+            rm changed.flag
           else
-            echo "⏭️ No changes to commit"
+            echo "⏭️ Skip commit"
           fi
