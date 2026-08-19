@@ -1,82 +1,137 @@
-<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono','Courier New',monospace">
-<defs>
-<linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#22C55E"/><stop offset="100%" stop-color="#4ADE80"/></linearGradient>
-<linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#16A34A"/><stop offset="100%" stop-color="#22C55E"/></linearGradient>
-<linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#4ADE80"/><stop offset="100%" stop-color="#86EFAC"/></linearGradient>
-</defs>
-<rect width="900" height="500" fill="#0d1117" rx="12"/>
-<text x="450" y="38" fill="#c9d1d9" font-size="18" font-weight="700" text-anchor="middle">Kompetenzprofil</text>
-<line x1="60" y1="52" x2="840" y2="52" stroke="#21262d" stroke-width="1"/>
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" font-family="'Inter','JetBrains Mono','Segoe UI',system-ui,sans-serif">
+ <defs>
+  <!-- Градиент для полос прогресса -->
+  <linearGradient id="grad-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+   <stop offset="0%" stop-color="#22C55E"/>
+   <stop offset="50%" stop-color="#4ADE80"/>
+   <stop offset="100%" stop-color="#86EFAC"/>
+  </linearGradient>
+  
+  <!-- Эффект свечения для кончиков полос -->
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+   <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+   <feMerge>
+    <feMergeNode in="coloredBlur"/>
+    <feMergeNode in="SourceGraphic"/>
+   </feMerge>
+  </filter>
 
-<!-- 1. Cloud-Sicherheit 99% -->
-<text x="60" y="88" fill="#c9d1d9" font-size="13">Cloud-Sicherheit</text>
-<text x="330" y="88" fill="#6e7681" font-size="11">AWS · Azure · Multi-Account</text>
-<text x="840" y="88" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">99%</text>
-<rect x="60" y="96" width="780" height="8" rx="4" fill="#161b22"/>
-<rect x="60" y="96" width="0" height="8" rx="4" fill="url(#g1)"><animate attributeName="width" from="0" to="772" dur="1.8s" fill="freeze" begin="0.2s"/></rect>
+  <!-- Фоновая сетка для эффекта "Dashboard" -->
+  <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+   <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#161b22" stroke-width="1"/>
+  </pattern>
+ </defs>
 
-<!-- 2. NIS2-Compliance 90% -->
-<text x="60" y="138" fill="#c9d1d9" font-size="13">NIS2/DORA-Compliance</text>
-<text x="330" y="138" fill="#6e7681" font-size="11">Artikel 21–32 · BSI · BaFin</text>
-<text x="840" y="138" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">90%</text>
-<rect x="60" y="146" width="780" height="8" rx="4" fill="#161b22"/>
-<rect x="60" y="146" width="0" height="8" rx="4" fill="url(#g2)"><animate attributeName="width" from="0" to="702" dur="1.8s" fill="freeze" begin="0.4s"/></rect>
+ <!-- Фон -->
+ <rect width="900" height="500" fill="#0d1117" rx="12"/>
+ <rect width="900" height="500" fill="url(#grid)" opacity="0.4"/>
+ 
+ <!-- Скан-линия (субтильная анимация) -->
+ <rect x="0" y="0" width="900" height="4" fill="#4ADE80" opacity="0.08">
+  <animate attributeName="y" values="0;500;0" dur="8s" repeatCount="indefinite"/>
+ </rect>
 
-<!-- 3. Infrastructure as Code 88% -->
-<text x="60" y="188" fill="#c9d1d9" font-size="13">Infrastructure as Code</text>
-<text x="330" y="188" fill="#6e7681" font-size="11">Terraform · OPA/Rego · CloudFormation</text>
-<text x="840" y="188" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">88%</text>
-<rect x="60" y="196" width="780" height="8" rx="4" fill="#161b22"/>
-<rect x="60" y="196" width="0" height="8" rx="4" fill="url(#g3)"><animate attributeName="width" from="0" to="686" dur="1.8s" fill="freeze" begin="0.6s"/></rect>
+ <!-- Заголовок -->
+ <text x="450" y="38" fill="#c9d1d9" font-size="18" font-weight="700" text-anchor="middle">DevOps &amp; Observability Kompetenzprofil</text>
+ <line x1="60" y1="52" x2="840" y2="52" stroke="#21262d" stroke-width="1"/>
 
-<!-- 4. Identity & Access Management 83% -->
-<text x="60" y="238" fill="#c9d1d9" font-size="13">Identity &amp; Access Management</text>
-<text x="330" y="238" fill="#6e7681" font-size="11">IAM · MFA · RBAC · PAM · SSO</text>
-<text x="840" y="238" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">83%</text>
-<rect x="60" y="246" width="780" height="8" rx="4" fill="#161b22"/>
-<rect x="60" y="246" width="0" height="8" rx="4" fill="url(#g1)"><animate attributeName="width" from="0" to="647" dur="1.8s" fill="freeze" begin="0.8s"/></rect>
+ <!-- 1. Cloud & Infrastructure (95%) -->
+ <text x="60" y="88" fill="#c9d1d9" font-size="13" font-weight="600">Cloud &amp; Infrastructure</text>
+ <text x="330" y="88" fill="#6e7681" font-size="11">AWS (EC2, S3, RDS, EKS) · Azure</text>
+ <text x="840" y="88" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">95%</text>
+ <rect x="60" y="96" width="780" height="8" rx="4" fill="#161b22"/>
+ <rect x="60" y="96" width="0" height="8" rx="4" fill="url(#grad-bar)"><animate attributeName="width" from="0" to="741" dur="1.8s" fill="freeze" begin="0.2s"/></rect>
+ <circle cx="60" cy="100" r="4" fill="#4ADE80" filter="url(#glow)" opacity="0">
+  <animate attributeName="cx" from="60" to="801" dur="1.8s" fill="freeze" begin="0.2s"/>
+  <animate attributeName="opacity" from="0" to="1" dur="0.1s" fill="freeze" begin="0.2s"/>
+  <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" begin="2.1s"/>
+ </circle>
 
-<!-- 5. DevSecOps 79% -->
-<text x="60" y="288" fill="#c9d1d9" font-size="13">DevSecOps &amp; CI/CD</text>
-<text x="330" y="288" fill="#6e7681" font-size="11">tfsec · checkov · gitleaks · SAST · DAST</text>
-<text x="840" y="288" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">79%</text>
-<rect x="60" y="296" width="780" height="8" rx="4" fill="#161b22"/>
-<rect x="60" y="296" width="0" height="8" rx="4" fill="url(#g2)"><animate attributeName="width" from="0" to="616" dur="1.8s" fill="freeze" begin="1.0s"/></rect>
+ <!-- 2. Container Orchestration (90%) -->
+ <text x="60" y="138" fill="#c9d1d9" font-size="13" font-weight="600">Container Orchestration</text>
+ <text x="330" y="138" fill="#6e7681" font-size="11">Docker · Kubernetes · Helm · ArgoCD</text>
+ <text x="840" y="138" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">90%</text>
+ <rect x="60" y="146" width="780" height="8" rx="4" fill="#161b22"/>
+ <rect x="60" y="146" width="0" height="8" rx="4" fill="url(#grad-bar)"><animate attributeName="width" from="0" to="702" dur="1.8s" fill="freeze" begin="0.4s"/></rect>
+ <circle cx="60" cy="150" r="4" fill="#4ADE80" filter="url(#glow)" opacity="0">
+  <animate attributeName="cx" from="60" to="762" dur="1.8s" fill="freeze" begin="0.4s"/>
+  <animate attributeName="opacity" from="0" to="1" dur="0.1s" fill="freeze" begin="0.4s"/>
+  <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" begin="2.3s"/>
+ </circle>
 
-<!-- 6. Kryptographie 75% -->
-<text x="60" y="338" fill="#c9d1d9" font-size="13">Kryptographie</text>
-<text x="330" y="338" fill="#6e7681" font-size="11">AES-256 · RSA · ECDSA · TLS 1.3 · KMS</text>
-<text x="840" y="338" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">75%</text>
-<rect x="60" y="346" width="780" height="8" rx="4" fill="#161b22"/>
-<rect x="60" y="346" width="0" height="8" rx="4" fill="url(#g3)"><animate attributeName="width" from="0" to="585" dur="1.8s" fill="freeze" begin="1.2s"/></rect>
+ <!-- 3. Observability & Monitoring (88%) -->
+ <text x="60" y="188" fill="#c9d1d9" font-size="13" font-weight="600">Observability &amp; Monitoring</text>
+ <text x="330" y="188" fill="#6e7681" font-size="11">Prometheus · Grafana · OpenTelemetry · Dash0</text>
+ <text x="840" y="188" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">88%</text>
+ <rect x="60" y="196" width="780" height="8" rx="4" fill="#161b22"/>
+ <rect x="60" y="196" width="0" height="8" rx="4" fill="url(#grad-bar)"><animate attributeName="width" from="0" to="686" dur="1.8s" fill="freeze" begin="0.6s"/></rect>
+ <circle cx="60" cy="200" r="4" fill="#4ADE80" filter="url(#glow)" opacity="0">
+  <animate attributeName="cx" from="60" to="746" dur="1.8s" fill="freeze" begin="0.6s"/>
+  <animate attributeName="opacity" from="0" to="1" dur="0.1s" fill="freeze" begin="0.6s"/>
+  <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" begin="2.5s"/>
+ </circle>
 
-<!-- 7. Post-Quantum 70% -->
-<text x="60" y="388" fill="#c9d1d9" font-size="13">Post-Quantum-Kryptographie</text>
-<text x="330" y="388" fill="#6e7681" font-size="11">ML-KEM · SLH-DSA · NIST FIPS 203/204/205</text>
-<text x="840" y="388" fill="#c9d1d9" font-size="13" font-weight="700" text-anchor="end">70%</text>
-<rect x="60" y="396" width="780" height="8" rx="4" fill="#161b22"/>
-<rect x="60" y="396" width="0" height="8" rx="4" fill="url(#g1)"><animate attributeName="width" from="0" to="546" dur="1.8s" fill="freeze" begin="1.4s"/></rect>
+ <!-- 4. Infrastructure as Code (85%) -->
+ <text x="60" y="238" fill="#c9d1d9" font-size="13" font-weight="600">Infrastructure as Code</text>
+ <text x="330" y="238" fill="#6e7681" font-size="11">Terraform · Ansible · Packer</text>
+ <text x="840" y="238" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">85%</text>
+ <rect x="60" y="246" width="780" height="8" rx="4" fill="#161b22"/>
+ <rect x="60" y="246" width="0" height="8" rx="4" fill="url(#grad-bar)"><animate attributeName="width" from="0" to="663" dur="1.8s" fill="freeze" begin="0.8s"/></rect>
+ <circle cx="60" cy="250" r="4" fill="#4ADE80" filter="url(#glow)" opacity="0">
+  <animate attributeName="cx" from="60" to="723" dur="1.8s" fill="freeze" begin="0.8s"/>
+  <animate attributeName="opacity" from="0" to="1" dur="0.1s" fill="freeze" begin="0.8s"/>
+  <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" begin="2.7s"/>
+ </circle>
 
-<!-- 8. Firmware-Sicherheit 65% -->
-<text x="60" y="438" fill="#c9d1d9" font-size="13">Firmware-Sicherheit &amp; IoT</text>
-<text x="330" y="438" fill="#6e7681" font-size="11">binwalk · Emulation · Reverse Engineering</text>
-<text x="840" y="438" fill="#c9d1d9" font-size="13" font-weight="700" text-anchor="end">65%</text>
-<rect x="60" y="446" width="780" height="8" rx="4" fill="#161b22"/>
-<rect x="60" y="446" width="0" height="8" rx="4" fill="url(#g2)"><animate attributeName="width" from="0" to="507" dur="1.8s" fill="freeze" begin="1.6s"/></rect>
+ <!-- 5. CI/CD Pipelines (82%) -->
+ <text x="60" y="288" fill="#c9d1d9" font-size="13" font-weight="600">CI/CD Pipelines</text>
+ <text x="330" y="288" fill="#6e7681" font-size="11">GitLab CI · GitHub Actions · Jenkins</text>
+ <text x="840" y="288" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">82%</text>
+ <rect x="60" y="296" width="780" height="8" rx="4" fill="#161b22"/>
+ <rect x="60" y="296" width="0" height="8" rx="4" fill="url(#grad-bar)"><animate attributeName="width" from="0" to="640" dur="1.8s" fill="freeze" begin="1.0s"/></rect>
+ <circle cx="60" cy="300" r="4" fill="#4ADE80" filter="url(#glow)" opacity="0">
+  <animate attributeName="cx" from="60" to="700" dur="1.8s" fill="freeze" begin="1.0s"/>
+  <animate attributeName="opacity" from="0" to="1" dur="0.1s" fill="freeze" begin="1.0s"/>
+  <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" begin="2.9s"/>
+ </circle>
 
-<!-- Arrow indicators on bars -->
-<g fill="#4ADE80" opacity="0.6">
-<polygon points="0,0 6,4 0,8"><animateTransform attributeName="transform" type="translate" values="60,96;832,96" dur="1.8s" fill="freeze" begin="0.2s"/><animate attributeName="opacity" values="0.8;0" dur="0.3s" fill="freeze" begin="1.9s"/></polygon>
-<polygon points="0,0 6,4 0,8"><animateTransform attributeName="transform" type="translate" values="60,146;762,146" dur="1.8s" fill="freeze" begin="0.4s"/><animate attributeName="opacity" values="0.8;0" dur="0.3s" fill="freeze" begin="2.1s"/></polygon>
-<polygon points="0,0 6,4 0,8"><animateTransform attributeName="transform" type="translate" values="60,196;746,196" dur="1.8s" fill="freeze" begin="0.6s"/><animate attributeName="opacity" values="0.8;0" dur="0.3s" fill="freeze" begin="2.3s"/></polygon>
-<polygon points="0,0 6,4 0,8"><animateTransform attributeName="transform" type="translate" values="60,246;707,246" dur="1.8s" fill="freeze" begin="0.8s"/><animate attributeName="opacity" values="0.8;0" dur="0.3s" fill="freeze" begin="2.5s"/></polygon>
-<polygon points="0,0 6,4 0,8"><animateTransform attributeName="transform" type="translate" values="60,296;676,296" dur="1.8s" fill="freeze" begin="1.0s"/><animate attributeName="opacity" values="0.8;0" dur="0.3s" fill="freeze" begin="2.7s"/></polygon>
-<polygon points="0,0 6,4 0,8"><animateTransform attributeName="transform" type="translate" values="60,346;645,346" dur="1.8s" fill="freeze" begin="1.2s"/><animate attributeName="opacity" values="0.8;0" dur="0.3s" fill="freeze" begin="2.9s"/></polygon>
-<polygon points="0,0 6,4 0,8"><animateTransform attributeName="transform" type="translate" values="60,396;606,396" dur="1.8s" fill="freeze" begin="1.4s"/><animate attributeName="opacity" values="0.8;0" dur="0.3s" fill="freeze" begin="3.1s"/></polygon>
-<polygon points="0,0 6,4 0,8"><animateTransform attributeName="transform" type="translate" values="60,446;567,446" dur="1.8s" fill="freeze" begin="1.6s"/><animate attributeName="opacity" values="0.8;0" dur="0.3s" fill="freeze" begin="3.3s"/></polygon>
-</g>
+ <!-- 6. DevSecOps & Compliance (80%) -->
+ <text x="60" y="338" fill="#c9d1d9" font-size="13" font-weight="600">DevSecOps &amp; Compliance</text>
+ <text x="330" y="338" fill="#6e7681" font-size="11">Vault · Trivy · OPA · GDPR/DSGVO · NIS2</text>
+ <text x="840" y="338" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">80%</text>
+ <rect x="60" y="346" width="780" height="8" rx="4" fill="#161b22"/>
+ <rect x="60" y="346" width="0" height="8" rx="4" fill="url(#grad-bar)"><animate attributeName="width" from="0" to="624" dur="1.8s" fill="freeze" begin="1.2s"/></rect>
+ <circle cx="60" cy="350" r="4" fill="#4ADE80" filter="url(#glow)" opacity="0">
+  <animate attributeName="cx" from="60" to="684" dur="1.8s" fill="freeze" begin="1.2s"/>
+  <animate attributeName="opacity" from="0" to="1" dur="0.1s" fill="freeze" begin="1.2s"/>
+  <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" begin="3.1s"/>
+ </circle>
 
-<!-- Bottom line -->
-<line x1="60" y1="472" x2="840" y2="472" stroke="#21262d" stroke-width="1"/>
-<text x="450" y="492" fill="#6e7681" font-size="11" text-anchor="middle">Stand: Juni 2026 · Kontinuierliche Weiterbildung</text>
+ <!-- 7. Linux & System Administration (75%) -->
+ <text x="60" y="388" fill="#c9d1d9" font-size="13" font-weight="600">Linux &amp; System Administration</text>
+ <text x="330" y="388" fill="#6e7681" font-size="11">Networking · Troubleshooting · Performance</text>
+ <text x="840" y="388" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">75%</text>
+ <rect x="60" y="396" width="780" height="8" rx="4" fill="#161b22"/>
+ <rect x="60" y="396" width="0" height="8" rx="4" fill="url(#grad-bar)"><animate attributeName="width" from="0" to="585" dur="1.8s" fill="freeze" begin="1.4s"/></rect>
+ <circle cx="60" cy="400" r="4" fill="#4ADE80" filter="url(#glow)" opacity="0">
+  <animate attributeName="cx" from="60" to="645" dur="1.8s" fill="freeze" begin="1.4s"/>
+  <animate attributeName="opacity" from="0" to="1" dur="0.1s" fill="freeze" begin="1.4s"/>
+  <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" begin="3.3s"/>
+ </circle>
+
+ <!-- 8. Scripting & Automation (70%) -->
+ <text x="60" y="438" fill="#c9d1d9" font-size="13" font-weight="600">Scripting &amp; Automation</text>
+ <text x="330" y="438" fill="#6e7681" font-size="11">Python · Bash · Go (Grundlagen)</text>
+ <text x="840" y="438" fill="#4ADE80" font-size="13" font-weight="700" text-anchor="end">70%</text>
+ <rect x="60" y="446" width="780" height="8" rx="4" fill="#161b22"/>
+ <rect x="60" y="446" width="0" height="8" rx="4" fill="url(#grad-bar)"><animate attributeName="width" from="0" to="546" dur="1.8s" fill="freeze" begin="1.6s"/></rect>
+ <circle cx="60" cy="450" r="4" fill="#4ADE80" filter="url(#glow)" opacity="0">
+  <animate attributeName="cx" from="60" to="606" dur="1.8s" fill="freeze" begin="1.6s"/>
+  <animate attributeName="opacity" from="0" to="1" dur="0.1s" fill="freeze" begin="1.6s"/>
+  <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" begin="3.5s"/>
+ </circle>
+
+ <!-- Нижняя линия и футер -->
+ <line x1="60" y1="472" x2="840" y2="472" stroke="#21262d" stroke-width="1"/>
+ <text x="450" y="492" fill="#6e7681" font-size="11" text-anchor="middle">Stand: 2026 · Kontinuierliche Weiterbildung &amp; Zertifizierung</text>
 </svg>
